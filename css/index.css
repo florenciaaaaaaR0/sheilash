@@ -1,0 +1,47 @@
+/* Fondo con imagen y filtro */
+.turnos-background {
+  background-image: linear-gradient(rgba(234, 179, 237, 0.6), rgba(248, 187, 208, 0.7)), url("../imagenes/turnos.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: 60px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+}
+
+/* Contenedor de cada día */
+.dia {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(5px);
+}
+
+.dia h3 {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Botones de turno */
+.btn-turno {
+  margin: 0.2rem;
+  background-color: #e91e63;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 8px 15px;
+}
+
+.btn-turno:hover {
+  background-color: #ba68c8;
+}
+
+/* Footer texto */
+.footer-info {
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
