@@ -45,3 +45,15 @@
   font-size: 0.9rem;
   margin-top: 2rem;
 }
+.selector-tipo button {
+  background-color: #ffb6d9;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+.selector-tipo button:hover {
+  background-color: #d38ec9;
+}

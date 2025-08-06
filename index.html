@@ -14,50 +14,76 @@
       <div class="text-center mb-5">
         <h1 class="fw-bold">🦋 Turnos Disponibles de la Semana 🦋</h1>
       </div>
-
-      <!-- Miércoles -->
-      <div class="dia text-center">
-        <h3>Miércoles</h3>
-      
-        <a href="https://wa.me/5491151780937?text=Hola!%20Quiero%20el%20turno%20de%20Miércoles%2013.30hs" class="btn btn-turno">13.30hs</a>
-      </div>
-
-      <!-- Jueves -->
-      <div class="dia text-center">
-        <h3>Jueves</h3>
-        <a href="https://wa.me/5491151780937?text=Hola!%20Quiero%20el%20turno%20de%20Jueves%2013.30hs" class="btn btn-turno">13.30hs</a>
-        <a href="https://wa.me/5491151780937?text=Hola!%20Quiero%20el%20turno%20de%20Jueves%2016hs" class="btn btn-turno">16hs</a>
-  
-      </div>
-
-      <!-- Viernes -->
-      <div class="dia text-center">
-        <h3>Viernes 🦋</h3>
-        
-        <a href="https://wa.me/5491151780937?text=Hola!%20Quiero%20el%20turno%20de%20Viernes%2014hs" class="btn btn-turno">14hs</a>
-        <a href="https://wa.me/5491151780937?text=Hola!%20Quiero%20el%20turno%20de%20Viernes%2016hs" class="btn btn-turno">16hs</a>
-      </div>
-
-      <!-- Sábado -->
-      <div class="dia text-center">
-        <h3>Sábado 🦋🦋</h3>
-        <a href="https://wa.me/5491151780937?text=Hola!%20Quiero%20el%20turno%20de%20Sábado%2011hs" class="btn btn-turno">11hs</a>
-
-        <a href="https://wa.me/5491151780937?text=Hola!%20Quiero%20el%20turno%20de%20Sábado%2017hs" class="btn btn-turno">17hs</a>
-      </div>
-
-      <!-- Domingo -->
-      <div class="dia text-center">
-        <h3>Domingo</h3>
-      
-      </div>
-
-      <div class="text-center footer-info">
-        <p>Los turnos se reservan únicamente con seña</p>
-        <p>Consultar los horarios disponibles del día Domingo</p>
-        <p class="mt-4">Sheei.Lash 💖</p>
-      </div>
-    </main>
+   <div class="dia text-center mb-4">
+    <h3>Miércoles</h3>
+    <button class="btn btn-turno" onclick="mostrarOpciones('Miércoles', '13.30hs')">13.30hs</button>
   </div>
+
+  <div class="dia text-center mb-4">
+    <h3>Jueves</h3>
+    <button class="btn btn-turno" onclick="mostrarOpciones('Jueves', '13.30hs')">13.30hs</button>
+    <button class="btn btn-turno" onclick="mostrarOpciones('Jueves', '16hs')">16hs</button>
+  </div>
+
+  <div class="dia text-center mb-4">
+    <h3>Viernes</h3>
+    <button class="btn btn-turno" onclick="mostrarOpciones('Viernes', '14hs')">14hs</button>
+    <button class="btn btn-turno" onclick="mostrarOpciones('Viernes', '16hs')">16hs</button>
+  </div>
+
+  <div class="dia text-center mb-4">
+    <h3>Sábado</h3>
+    <button class="btn btn-turno" onclick="mostrarOpciones('Sábado', '11hs')">11hs</button>
+    <button class="btn btn-turno" onclick="mostrarOpciones('Sábado', '17hs')">17hs</button>
+  </div>
+
+  <div class="text-center footer-info mt-5">
+    <p>Los turnos se reservan únicamente con seña</p>
+    <p>Consultar los horarios disponibles del día Domingo</p>
+    <p class="mt-4">Sheei.Lash 💖</p>
+  </div>
+
+  <!-- Selector de tipo de pestañas (oculto hasta que se cliquea un horario) -->
+  <div id="selectorTipo" class="selector-tipo text-center mt-5" style="display: none;">
+    <h5>¿Qué tipo de pestañas querés?</h5>
+    <div class="d-flex justify-content-center gap-3 mt-3">
+      <button class="btn btn-secondary" onclick="enviarWhatsApp('Clásicas')">Clásicas</button>
+      <button class="btn btn-secondary" onclick="enviarWhatsApp('Híbridas')">Híbridas</button>
+      <button class="btn btn-secondary" onclick="enviarWhatsApp('Volumen bajo')">Volumen bajo</button>
+       <button class="btn btn-secondary" onclick="enviarWhatsApp('Volumen medio')">volumen medio</button>
+        <button class="btn btn-secondary" onclick="enviarWhatsApp('volumen alto')">Volumen alto</button>
+         <button class="btn btn-secondary" onclick="enviarWhatsApp('volumen brasilero')">Volumen brasilero</button>
+          <button class="btn btn-secondary" onclick="enviarWhatsApp('foxy')">Foxy</button>
+           <button class="btn btn-secondary" onclick="enviarWhatsApp('Whispy')">Whispy</button>
+            <button class="btn btn-secondary" onclick="enviarWhatsApp('Bratz')">Bratz</button>
+             <button class="btn btn-secondary" onclick="enviarWhatsApp('anime')">Anime</button>
+              <button class="btn btn-secondary" onclick="enviarWhatsApp('Lifting')">Lifting</button>
+               <button class="btn btn-secondary" onclick="enviarWhatsApp('Perfilado de cejas')">Perfilado de cejas</button>
+                <button class="btn btn-secondary" onclick="enviarWhatsApp('Laminado de cejas')">Laminado de cejas</button>
+                 <button class="btn btn-secondary" onclick="enviarWhatsApp('Remocion')">Remocion</button>
+    </div>
+  </div>
+</main>
+<script>
+  let diaSeleccionado = '';
+  let horaSeleccionada = '';
+
+  function mostrarOpciones(dia, hora) {
+    diaSeleccionado = dia;
+    horaSeleccionada = hora;
+    document.getElementById('selectorTipo').style.display = 'block';
+    document.getElementById('selectorTipo').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function enviarWhatsApp(tipo) {
+    const numero = '5491151780937';
+    const mensaje = `Hola! Quiero un turno de pestañas ${tipo} el ${diaSeleccionado} a las ${horaSeleccionada}`;
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
