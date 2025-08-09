@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Turnos disponibles - Sheei Lash</title>
+  <meta name="description" content="Reserva tus turnos para extensiones de pestañas en Sheei Lash. Clásicas, híbridas, volumen y más. Atención personalizada en [Ciudad].">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="./css/index.css" />
 </head>
@@ -11,134 +12,105 @@
 <body>
   <div class="turnos-background">
     <main class="container py-5">
-      <div class="text-center mb-5">
+      <header class="text-center mb-5">
         <h1 class="fw-bold">🦋 Turnos Disponibles de la Semana 🦋</h1>
+      </header>
+
+      <!-- Contenedor donde se generarán los días y horarios -->
+      <div id="listaTurnos"></div>
+
+      <footer class="text-center footer-info mt-5">
+        <p>Los turnos se reservan únicamente con seña</p>
+        <p>Consultar los horarios disponibles del día Domingo</p>
+        <p class="mt-4">Sheei.Lash 💖</p>
+      </footer>
+
+      <!-- Selector de tipo de pestañas -->
+      <div id="selectorTipo" class="selector-tipo text-center mt-5 d-none">
+        <h5>¿Qué tipo de pestañas querés?</h5>
+        <div class="container mt-3">
+          <div class="row g-3" id="opcionesPestanas"></div>
+        </div>
       </div>
-   <div class="dia text-center mb-4">
-    <h3>Lunes 11 de Agosto</h3>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Lunes 11', '16hs')"> 16hs</button>
+    </main>
   </div>
 
-  <div class="dia text-center mb-4">
-    <h3>Martes 12 de Agosto</h3>
-    <button class="btn btn-turno" onclick="mostrarOpciones('martes 12', '9 hs')">9 hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('martes 12', '13.30 hs')">13.30hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('martes 12', '16 hs')">16hs</button>
-  </div>
+  <script>
+    const turnos = {
+      "Lunes 11 de Agosto": ["16hs"],
+      "Martes 12 de Agosto": ["9hs", "13.30hs", "16hs"],
+      "Miércoles 13 de Agosto": ["9hs", "13.30hs", "16hs"],
+      "Jueves 14 de Agosto": ["9hs", "13.30hs", "16hs", "18.30hs"],
+      "Viernes 15 de Agosto": ["9hs", "13.30hs", "16hs", "18.30hs"],
+      "Sábado 16 de Agosto": ["11hs", "14hs", "16hs"],
+      "Quiero reservar un turno para más adelante 💖": ["Programar turno"]
+    };
 
-  <div class="dia text-center mb-4">
-    <h3>Miercoles 13 de Agosto</h3>
-    <button class="btn btn-turno" onclick="mostrarOpciones('miercoles 13', '9 hs')">9hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('miercoles 13', '13.30 hs')">13.30hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('miercoles 13', '16 hs')">16hs</button>
-  </div>
+    const tiposPestanas = [
+      "Clásicas", "Híbridas", "Volumen bajo", "Volumen medio", "Volumen alto",
+      "Volumen brasilero", "Foxy", "Whispy", "Bratz", "Anime",
+      "Lifting", "Perfilado de cejas", "Laminado de cejas", "Remoción"
+    ];
 
-  <div class="dia text-center mb-4">
-    <h3>Jueves 14 de Agosto</h3>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Jueves 14', '9 hs')">9hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Jueves 14', '13.30 hs')">13.30hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Jueves 14', '16 hs')">16hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Jueves 14', '18.30 hs')">18.30hs</button>
+    let diaSeleccionado = '';
+    let horaSeleccionada = '';
 
-  </div>
-   <div class="dia text-center mb-4">
-    <h3>Viernes 15 de Agosto</h3>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Viernes 15', '9 hs')">9hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Viernes 15', '13.30 hs')">13.30hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Viernes 15', '16 hs')">16hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Viernes 15', '18.30 hs')">18.30hs</button>
+    // Generar la lista de turnos
+    const listaTurnos = document.getElementById("listaTurnos");
+    for (const [dia, horas] of Object.entries(turnos)) {
+      const section = document.createElement("section");
+      section.classList.add("dia", "text-center", "mb-4");
 
-  </div>
-   <div class="dia text-center mb-4">
-    <h3>Sabado 16 de Agosto</h3>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Sabado 16', '11 hs')">11hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Sabado 16', '14 hs')">14hs</button>
-    <button class="btn btn-turno" onclick="mostrarOpciones('Sabado 16', '16 hs')">16hs</button>
-  </div>
-  <div class="dia text-center mb-4">
-    <h3> Quiero reservar un turno para mas adelante 💖</h3>
-    <button class="btn btn-turno" onclick="mostrarOpciones('completar','completar')">Programar turno</button>
-   
+      const h2 = document.createElement("h2");
+      h2.textContent = dia;
+      section.appendChild(h2);
 
-  </div>
+      horas.forEach(hora => {
+        const btn = document.createElement("button");
+        btn.classList.add("btn", "btn-turno");
+        btn.setAttribute("aria-label", `${dia} a las ${hora}`);
+        btn.textContent = hora;
+        btn.onclick = () => mostrarOpciones(dia, hora);
+        section.appendChild(btn);
+      });
 
-  <div class="text-center footer-info mt-5">
-    <p>Los turnos se reservan únicamente con seña</p>
-    <p>Consultar los horarios disponibles del día Domingo</p>
-    <p class="mt-4">Sheei.Lash 💖</p>
-  </div>
+      listaTurnos.appendChild(section);
+    }
 
-<div id="selectorTipo" class="selector-tipo text-center mt-5" style="display: none;">
-  <h5>¿Qué tipo de pestañas querés?</h5>
-  <div class="container mt-3">
-    <div class="row g-3">
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Clásicas')">Clásicas</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Híbridas')">Híbridas</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Volumen bajo')">Volumen bajo</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Volumen medio')">Volumen medio</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Volumen alto')">Volumen alto</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Volumen brasilero')">Volumen brasilero</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Foxy')">Foxy</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Whispy')">Whispy</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Bratz')">Bratz</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Anime')">Anime</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Lifting')">Lifting</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Perfilado de cejas')">Perfilado de cejas</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Laminado de cejas')">Laminado de cejas</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <button class="btn btn-secondary w-100" onclick="enviarWhatsApp('Remocion')">Remoción</button>
-      </div>
-    </div>
-  </div>
-</div>
+    // Generar opciones de pestañas
+    const opcionesContainer = document.getElementById("opcionesPestanas");
+    tiposPestanas.forEach(tipo => {
+      const col = document.createElement("div");
+      col.classList.add("col-6", "col-md-3");
 
-</main>
-<script>
-  let diaSeleccionado = '';
-  let horaSeleccionada = '';
+      const btn = document.createElement("button");
+      btn.classList.add("btn", "btn-secondary", "w-100");
+      btn.textContent = tipo;
+      btn.onclick = () => enviarWhatsApp(tipo);
 
-  function mostrarOpciones(dia, hora) {
-    diaSeleccionado = dia;
-    horaSeleccionada = hora;
-    document.getElementById('selectorTipo').style.display = 'block';
-    document.getElementById('selectorTipo').scrollIntoView({ behavior: 'smooth' });
-  }
+      col.appendChild(btn);
+      opcionesContainer.appendChild(col);
+    });
 
-  function enviarWhatsApp(tipo) {
-    const numero = '5491151780937';
-    const mensaje = `Hola! Quiero un turno de pestañas ${tipo} el ${diaSeleccionado} a las ${horaSeleccionada}`;
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
-    window.open(url, '_blank');
-  }
-</script>
+    function mostrarOpciones(dia, hora) {
+      diaSeleccionado = dia;
+      horaSeleccionada = hora;
+      const selector = document.getElementById("selectorTipo");
+      selector.classList.remove("d-none");
+      selector.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function enviarWhatsApp(tipo) {
+      const numero = '5491151780937';
+      const mensaje = `Hola! Quiero un turno de pestañas ${tipo} el ${diaSeleccionado} ${horaSeleccionada}`;
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+
+      // Ocultar el selector después de enviar
+      document.getElementById("selectorTipo").classList.add("d-none");
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>
